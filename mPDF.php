@@ -47,30 +47,20 @@ if (!defined('_MPDF_TEMP_PATH'))
 	define("_MPDF_TEMP_PATH", _MPDF_PATH . 'tmp/');
 
 if (!defined('_MPDF_TTFONTPATH')) {
-	define('_MPDF_TTFONTPATH', _MPDF_PATH . 'ttfonts/');
+	define('_MPDF_TTFONTPATH', _MPDF_PATH . 'fonts/ttfonts/');
 }
 if (!defined('_MPDF_TTFONTDATAPATH')) {
-	define('_MPDF_TTFONTDATAPATH', _MPDF_PATH . 'ttfontdata/');
+	define('_MPDF_TTFONTDATAPATH', _MPDF_PATH . 'tmp/');
 }
 
 $errorlevel = error_reporting();
 $errorlevel = error_reporting($errorlevel & ~E_NOTICE);
 
-//error_reporting(E_ALL);
-
-if (function_exists("date_default_timezone_set")) {
-	if (ini_get("date.timezone") == "") {
-		date_default_timezone_set("Europe/London");
-	}
-}
-if (!function_exists("mb_strlen")) {
-	die("Error - mPDF requires mb_string functions. Ensure that PHP is compiled with php_mbstring.dll enabled.");
-}
-
 if (!defined('PHP_VERSION_ID')) {
 	$version = explode('.', PHP_VERSION);
 	define('PHP_VERSION_ID', ($version[0] * 10000 + $version[1] * 100 + $version[2]));
 }
+
 // Machine dependent number of bytes used to pack "double" into binary (used in cacheTables)
 $test = pack("d", 134455.474557333333666);
 define("_DSIZE", strlen($test));
@@ -3550,7 +3540,7 @@ class mPDF
 						$file.=strtolower($style);
 					}
 					$file.='.php';
-					include(_MPDF_PATH . 'font/' . $file);
+					include(_MPDF_PATH . 'fonts/' . $file);
 					if (!isset($cw)) {
 						$this->Error('Could not include font metric file');
 					}
@@ -7982,19 +7972,23 @@ class mPDF
 		return '';
 	}
 
-// *****************************************************************************
-//                                                                             *
-//                             Protected methods                               *
-//                                                                             *
-// *****************************************************************************
+	// *****************************************************************************
+	//                                                                             *
+	//                             Protected methods                               *
+	//                                                                             *
+	// *****************************************************************************
 	function _dochecks()
 	{
-		//Check for locale-related bug
+		if (!function_exists("mb_strlen"))
+			die("Error - mPDF requires mb_string functions. Ensure that PHP is compiled with php_mbstring.dll enabled.");
+
 		if (1.1 == 1)
 			$this->Error('Don\'t alter the locale before including mPDF');
+
 		//Check for decimal separator
 		if (sprintf('%.1f', 1.0) != '1.0')
 			setlocale(LC_NUMERIC, 'C');
+
 		// mPDF 5.4.11
 		$mqr = ini_get("magic_quotes_runtime");
 		if ($mqr) {
@@ -13727,8 +13721,8 @@ class mPDF
 
 		// Get dictionary
 		if (!$this->loadedSHYdictionary) {
-			if (file_exists(_MPDF_PATH . 'patterns/dictionary.txt')) {
-				$this->SHYdictionary = file(_MPDF_PATH . 'patterns/dictionary.txt', FILE_SKIP_EMPTY_LINES);
+			if (file_exists(_MPDF_PATH . 'includes/patterns/dictionary.txt')) {
+				$this->SHYdictionary = file(_MPDF_PATH . 'includes/patterns/dictionary.txt', FILE_SKIP_EMPTY_LINES);
 				foreach ($this->SHYdictionary as $entry) {
 					$entry = trim($entry);
 					$poss = array();
@@ -13757,7 +13751,7 @@ class mPDF
 		}
 		// If no pattern loaded or not the best one
 		if (count($this->SHYpatterns) < 1 || ($this->loadedSHYpatterns && $this->loadedSHYpatterns != $this->SHYlang)) {
-			include(_MPDF_PATH . "patterns/" . $this->SHYlang . ".php");
+			include(_MPDF_PATH . "includes/patterns/" . $this->SHYlang . ".php");
 			$patterns = explode(' ', $patterns);
 			$new_patterns = array();
 			for ($i = 0; $i < count($patterns); $i++) {

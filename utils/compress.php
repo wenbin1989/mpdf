@@ -19,7 +19,7 @@ if (!isset($_POST['generate']) || $_POST['generate']!='generate') {
 
 
 if (!file_exists('mPDF_source.php')) {
-	die("ERROR - Could not find mpdf_source.php file in current directory. Please rename mPDF.php as mPDF_source.php");
+	die("ERROR - Could not find mpdf_source.php file in current directory. Please copy mPDF.php as mPDF_source.php to current directory");
 }
 
 
@@ -95,8 +95,8 @@ if (PHP_VERSION_ID < 50300) { $mqr = @get_magic_quotes_runtime(); }
 	else { $mqr=0; }
 if ($mqr) { set_magic_quotes_runtime(0); }
 
-$l = file('mpdf_source.php');
-if (!count($l)) { die("ERROR - Could not find mpdf_source.php file in current directory"); }
+$l = file('mPDF_source.php');
+if (!count($l)) { die("ERROR - Could not find mPDF_source.php file in current directory"); }
 $exclflags = array();
 $x = '';
 
@@ -148,7 +148,7 @@ foreach($l AS $k=>$ln) {
 }
 // mPDF 5.0
 if (function_exists('file_put_contents')) {
-	$check = file_put_contents('mPDF.php', $x);
+	$check = file_put_contents('../mPDF.php', $x);
 }
 else {
 	$f=fopen('mPDF.php', 'w');
