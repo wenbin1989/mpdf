@@ -65,9 +65,9 @@ td { text-align: justify; }
 //==============================================================
 //==============================================================
 
-include("../mpdf.php");
+include("../mPDF.php");
 
-$mpdf=new mPDF('-aCJK','A4','','',32,25,27,25,16,13); 
+$mpdf=new mPDF('-aCJK','A4','','',32,25,27,25,16,13);
 $mpdf->SetDisplayMode('fullpage');
 
 $mpdf->SetTitle($utxt['zh-CN']);

@@ -135,10 +135,10 @@ $footerE = '<div align="center" style="background-color: #f0f2ff;background: tra
 //==============================================================
 //==============================================================
 
-include("../mpdf.php");
+include("../mPDF.php");
 
 
-$mpdf=new mPDF('c','A4','','',42,15,57,57,20,17); 
+$mpdf=new mPDF('c','A4','','',42,15,57,57,20,17);
 
 $mpdf->displayDefaultOrientation = true;
 

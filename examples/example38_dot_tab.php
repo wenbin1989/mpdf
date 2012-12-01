@@ -17,13 +17,13 @@ $html = '<h3>Menu</h3>
 ';
 
 
-include("../mpdf.php");
+include("../mPDF.php");
 
-$mpdf=new mPDF(); 
+$mpdf=new mPDF();
 
 $mpdf->WriteHTML($html);
 
-$mpdf->Output(); 
+$mpdf->Output();
 
 exit;
 

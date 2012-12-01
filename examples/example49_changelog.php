@@ -4,9 +4,9 @@ ini_set("memory_limit","384M");
 // This is because changelog.txt contains over 100000 characters, and preg_* functions in mPDF won't work.
 ini_set("pcre.backtrack_limit","200000");
 
-include("../mpdf.php");
+include("../mPDF.php");
 
-$mpdf=new mPDF(); 
+$mpdf=new mPDF();
 
 $mpdf->tabSpaces = 6;
 

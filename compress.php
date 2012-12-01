@@ -1,6 +1,6 @@
 <?php
 
-$excl = array( 'HTML-CSS', 'DIRECTW', 'TABLES', 'LISTS', 'IMAGES-CORE', 
+$excl = array( 'HTML-CSS', 'DIRECTW', 'TABLES', 'LISTS', 'IMAGES-CORE',
 'IMAGES-BMP', 'IMAGES-WMF', 'TABLES-ADVANCED-BORDERS', 'HTMLHEADERS-FOOTERS', 'COLUMNS', 'TOC', 'INDEX', 'BOOKMARKS', 'BARCODES', 'FORMS', 'WATERMARK', 'CJK-FONTS', 'RTL', 'INDIC', 'ANNOTATIONS', 'BACKGROUNDS', 'CSS-FLOAT', 'CSS-IMAGE-FLOAT', 'CSS-POSITION', 'CSS-PAGE', 'BORDER-RADIUS', 'HYPHENATION', 'ENCRYPTION', 'IMPORTS', 'PROGRESS-BAR');
 
 
@@ -18,8 +18,8 @@ $excl = array( 'HTML-CSS', 'DIRECTW', 'TABLES', 'LISTS', 'IMAGES-CORE',
 if (!isset($_POST['generate']) || $_POST['generate']!='generate') {
 
 
-if (!file_exists('mpdf_source.php')) {
-	die("ERROR - Could not find mpdf_source.php file in current directory. Please rename mpdf.php as mpdf_source.php"); 
+if (!file_exists('mPDF_source.php')) {
+	die("ERROR - Could not find mpdf_source.php file in current directory. Please rename mPDF.php as mPDF_source.php");
 }
 
 
@@ -39,7 +39,7 @@ function checkedAll (frm1) {
           {
           checked = false
           }
-	for (var i =0; i < aa.elements.length; i++) 
+	for (var i =0; i < aa.elements.length; i++)
 	{
 	 aa.elements[i].checked = checked;
 	}
@@ -47,8 +47,8 @@ function checkedAll (frm1) {
 </script>
 </head>
 <body>
-<p><span style="color:red; font-weight: bold;">WARNING</span>: This utility will OVERWRITE mpdf.php file in the current directory.</p>
-<p>Select the functions you wish to INCLUDE in your mpdf.php program. When you click generate, a new mpdf.php file will be written to the current directory.</p>
+<p><span style="color:red; font-weight: bold;">WARNING</span>: This utility will OVERWRITE mPDF.php file in the current directory.</p>
+<p>Select the functions you wish to INCLUDE in your mPDF.php program. When you click generate, a new mPDF.php file will be written to the current directory.</p>
 <div><b>Notes</b>
 <ul>
 <li>HTML-CSS is required for many of the other functions to work including: Tables, Lists, Backgrounds, Forms, Border-radius and all other CSS</li>
@@ -80,7 +80,7 @@ exit;
 }
 
 $inc = $_POST['inc'];
-if (is_array($inc) && count($inc)>0 ) { 
+if (is_array($inc) && count($inc)>0 ) {
 	foreach($inc AS $i=>$v) {
 		$key = array_search($i, $excl);
 		unset($excl[$key]);
@@ -142,27 +142,27 @@ foreach($l AS $k=>$ln) {
 		}
 		$exclude = true;
 	}
-	if (count($exclflags)==0 && !$exclude) { 
-		$x .= $ln; 
+	if (count($exclflags)==0 && !$exclude) {
+		$x .= $ln;
 	}
 }
 // mPDF 5.0
 if (function_exists('file_put_contents')) {
-	$check = file_put_contents('mpdf.php', $x);
+	$check = file_put_contents('mPDF.php', $x);
 }
 else {
-	$f=fopen('mpdf.php', 'w');
+	$f=fopen('mPDF.php', 'w');
 	$check = fwrite($f, $x);
 	fclose($f);
 }
-if (!$check) { die("ERROR - Could not write to mpdf.php file. Are permissions correctly set?"); }
+if (!$check) { die("ERROR - Could not write to mPDF.php file. Are permissions correctly set?"); }
 echo '<p><b>mPDF file generated successfully!</b></p>';
 echo '<div>mPDF file size '.number_format((strlen($x)/1024)).' kB</div>';
 
 unset($l);
 unset($x);
 
-include('mpdf.php');
+include('mPDF.php');
 $mpdf = new mPDF();
 
 echo '<div>Memory usage on loading mPDF class '.number_format((memory_get_usage(true)/(1024*1024)),2).' MB</div>';

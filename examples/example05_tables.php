@@ -993,9 +993,9 @@ Phasellus feugiat, lectus ac aliquam molestie, leo lacus tincidunt turpis, vel a
 //==============================================================
 //==============================================================
 //==============================================================
-include("../mpdf.php");
+include("../mPDF.php");
 
-$mpdf=new mPDF('c','A4','','',32,25,27,25,16,13); 
+$mpdf=new mPDF('c','A4','','',32,25,27,25,16,13);
 
 $mpdf->SetDisplayMode('fullpage');
 

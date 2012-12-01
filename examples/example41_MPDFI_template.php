@@ -1,9 +1,9 @@
 <?php
 
-include("../mpdf.php");
+include("../mPDF.php");
 
-$mpdf=new mPDF('','','','',15,15,57,16,9,9); 
-$mpdf->SetImportUse();	
+$mpdf=new mPDF('','','','',15,15,57,16,9,9);
+$mpdf->SetImportUse();
 
 $mpdf->SetDisplayMode('fullpage');
 

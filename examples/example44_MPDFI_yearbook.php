@@ -1,7 +1,7 @@
 <?php
 
 // First write all your entries to a PDF file, forcing each entry to fit on one page
-include("../mpdf.php");
+include("../mPDF.php");
 
 // Define the maximum containing box width & height for each text box as it will appear on the final page (no padding or margin here)
 $pw = 80;
@@ -51,8 +51,8 @@ $mpdf->Output('test.pdf','F');
 
 // Now collate those pages using IMPORT - 4 pages to one page
 
-$mpdf=new mPDF(); 
-$mpdf->SetImportUse();	
+$mpdf=new mPDF();
+$mpdf->SetImportUse();
 $mpdf->SetDisplayMode('fullpage');
 
 $mpdf->SetHeader('{DATE j-m-Y}|My Yearbook 2005|{PAGENO}');

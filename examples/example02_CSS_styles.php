@@ -19,9 +19,9 @@ $html = '
 //==============================================================
 //==============================================================
 
-include("../mpdf.php");
+include("../mPDF.php");
 
-$mpdf=new mPDF('c'); 
+$mpdf=new mPDF('c');
 
 $mpdf->SetDisplayMode('fullpage');
 

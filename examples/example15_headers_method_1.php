@@ -1,8 +1,8 @@
 <?php
 
-include("../mpdf.php");
+include("../mPDF.php");
 
-$mpdf=new mPDF('c'); 
+$mpdf=new mPDF('c');
 
 $mpdf->mirrorMargins = 1;	// Use different Odd/Even headers and footers and mirror margins
 

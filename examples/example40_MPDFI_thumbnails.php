@@ -1,9 +1,9 @@
 <?php
 
-include("../mpdf.php");
+include("../mPDF.php");
 
-$mpdf=new mPDF(); 
-$mpdf->SetImportUse();	
+$mpdf=new mPDF();
+$mpdf->SetImportUse();
 
 $mpdf->Thumbnail('sample_orientation2.pdf', 4, 5);	// number per row	// spacing in mm
 
